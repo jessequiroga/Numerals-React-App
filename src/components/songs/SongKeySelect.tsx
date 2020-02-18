@@ -4,6 +4,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import TextField from '@material-ui/core/TextField';
 import {SCALE} from '../../data/Constants';
 
 
@@ -30,21 +31,19 @@ const SongKeySelect: React.FC = (props) => {
 
   return (
     <FormControl variant="outlined" className={classes.formControl}>
-      <InputLabel id="demo-simple-select-outlined-label">
-        Key
-      </InputLabel>
-      <Select
-        labelId="demo-simple-select-outlined-label"
-        id="demo-simple-select-outlined"
-        value={songKey}
-        onChange={handleKeyChange}
+      <TextField
+          id="standard-select-currency"
+          select
+          label="Key"
+          value={songKey}
+          onChange={handleKeyChange}
       >
         {SCALE.map((value, i) => { 
           return (
             <MenuItem value={value.key}>{value.label}</MenuItem>
           ) 
         })}
-      </Select>
+      </TextField>
     </FormControl>
   );
 }

@@ -1,6 +1,5 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import SongBar from './SongBar';
 import Container from '@material-ui/core/Container';
 
 const useStyles = makeStyles(theme => ({
@@ -17,12 +16,10 @@ const useStyles = makeStyles(theme => ({
 const SongContainer: React.FC = (props) => { 
 
   return (
-    <Container maxWidth="sm">
-        <SongBar />
-        <SongBar />
-        <SongBar />
+    <Container maxWidth="sm"> 
     </Container>
   );
 }
+
 
 export default SongContainer;
