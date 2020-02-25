@@ -36,19 +36,6 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const mainLinks = {
-  home: {
-    path: '/',
-    string: 'Home',
-    icon: 'Home'
-  },
-  songs: {
-    path: '/songs',
-    string: 'Songs',
-    icon: 'Music'
-  },
-};
-
 function Header() {
   
   const classes = useStyles();

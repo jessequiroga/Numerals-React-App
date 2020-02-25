@@ -1,38 +1,32 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
-import SongBarGridItem from './SongBarGridItem';
-import { SongBarModel, Numeral } from '../../data/Models';
+import BarNumeralSelect from './BarNumeralSelect';
+import { SongBarModel, BeatModel, SongConfig } from '../../data/Models';
 
 export interface BarProps {
-    bar : SongBarModel
+    bar : SongBarModel,
+    numeralHandler : any,
+    barIndex : number,
+    config : SongConfig
 }
 
-const useStyles = makeStyles(theme => ({
-  formControl: {
-    margin: theme.spacing(1),
-    minWidth: 120,
-  },
-  selectEmpty: {
-    marginTop: theme.spacing(2),
-  },
-}));
-
-const DEFAULT_BAR_LENGTH = 12;
-const COUNTS_PER_BAR = 4;
-
 const SongBar: React.FC<BarProps> = ({
-  bar: bar
+  bar: bar,
+  numeralHandler : numeralHandler,
+  barIndex : barIndex,
+  config : config
 }) => {
 
-  function renderBarColumn(numeral: Numeral) {
-    return <Grid item xs={3} >{numeral.getValue()}</Grid>
+  function renderBarColumn(beat: BeatModel, barIndex: number, beatIndex: number) {
+    return <Grid item xs={3} >
+              <BarNumeralSelect config={config} numeralHandler={numeralHandler} numeral={(beat.numeral) ? beat.numeral: undefined} barIndex={barIndex} beatIndex={beatIndex} />
+           </Grid>
   }
 
   var rows = [];
-  for (var i = 0; i < COUNTS_PER_BAR; i++) {
-    rows.push(renderBarColumn(bar.numerals[i]))
+  for (var i = 0; i < config.bpm; i++) {
+    rows.push(renderBarColumn(bar.beats[i], barIndex, i))
   }
 
   return (
@@ -44,8 +38,8 @@ const SongBar: React.FC<BarProps> = ({
           <TextField 
             id="filled-basic" 
             fullWidth
-            value={bar.lyrics}
-            />
+            defaultValue={bar.lyrics ? bar.lyrics : ''}
+          />
       </Grid>
     </Grid>
   );

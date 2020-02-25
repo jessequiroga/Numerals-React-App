@@ -1,8 +1,7 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import SongFormDial from './SongFormDial';
-import SongKeySelect from './SongKeySelect';
 import SongGrid from './SongGrid';
+import SongConfigForm from './SongConfigForm';
 import Paper from '@material-ui/core/Paper';
 import Divider from '@material-ui/core/Divider';
 import Container from '@material-ui/core/Container';
@@ -12,53 +11,53 @@ import Backend from 'react-dnd-html5-backend'
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import ShareIcon from '@material-ui/icons/Share';
-import {TEST_SONG} from '../../data/Fixtures';
-import {SongModel} from '../../data/Models';
+import {SongModel, Numeral, SongConfig} from '../../data/Models';
+import {SongFactory} from '../../data/SongFactory';
+import {SongRepository} from '../../data/SongRepository';
+import { useParams } from 'react-router-dom';
 
 
-const useStyles = makeStyles(theme => ({
-  root: {
-      width: 'fit-content',
-      border: `1px solid ${theme.palette.divider}`,
-      borderRadius: theme.shape.borderRadius,
-      backgroundColor: theme.palette.background.paper,
-      color: theme.palette.text.secondary,
-      '& svg': {
-        margin: theme.spacing(2),
-      },
-      '& hr': {
-        margin: theme.spacing(0, 0.5),
-      },
-  },  
-  formControl: {
-    margin: theme.spacing(1),
-    minWidth: 120,
-  },
-  songTitle: {
-    marginTop: theme.spacing(2),
-  },
-}));
+export interface SongProps {
+  song: SongModel
+}
 
+const SongForm: React.FC<SongProps> = ({
+    song: songModel,
+}) => { 
+  console.log(songModel)
+  const [song, setSong] = React.useState<SongModel>(songModel)
+  const songFactory = new SongFactory(song.config)
 
-const SongForm: React.FC = (props) => { 
-  
-  const classes = useStyles();
-  //const [song, setSong] = React.useState<SongModel>(TEST_SONG)
-  var song = TEST_SONG;
+  const handleBarAdd = (barNum: number) => {
+    for(var i=0;i<barNum; i++) {
+      song.bars.push(songFactory.makeBar())
+    }
+    setSong({...song})
+  };
+
+  const handleNumeralChange = (numeral: Numeral, barIndex:number, beatIndex: number) => {
+    song.bars[barIndex].beats[beatIndex].numeral = numeral
+    setSong({...song})
+  };
+
+  const handleConfigChange = (config: SongConfig) => {
+    song.config = config;
+    setSong({...song})
+  };
+
   return (
+    
     <Container maxWidth="sm">
       <DndProvider backend={Backend}>
-
         <Paper>
           <Container maxWidth="sm">
-            
             <Toolbar> 
               <Typography variant="h5">
                 {song.title}
               </Typography>
               <Divider orientation="vertical" />
 
-              <SongKeySelect />
+              <SongConfigForm songConfigHandler={handleConfigChange} songConfig={song.config} />
 
               <Divider orientation="vertical" />
 
@@ -67,17 +66,15 @@ const SongForm: React.FC = (props) => {
               </IconButton>
             </Toolbar>
 
-            <SongGrid song={TEST_SONG} />
-            
+            <SongGrid song={song} numeralChangeHandler={handleNumeralChange} />
+
           </Container>
         </Paper>
       </DndProvider>
-
       <Toolbar>
-        <SongFormDial />
+        <SongFormDial eventHandler={handleBarAdd} />
       </Toolbar>
-    
-    </Container>
+     </Container>
   );
 }
 

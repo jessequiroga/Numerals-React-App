@@ -39,14 +39,15 @@ const actions = [
   { icon: <FourBarIcon />, name: '4 Bars', value: 4 },
 ];
 
-export default function SongFormDial() {
+export interface SongDialProps {
+  eventHandler : any
+}
+
+const SongFormDial : React.FC<SongDialProps> = ({
+  eventHandler: eventHandler
+}) => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
-  const [hidden, setHidden] = React.useState(false);
-
-  const handleHiddenChange = (event:any) => {
-    setHidden(event.target.checked);
-  };
 
   const handleClose = () => {
     setOpen(false);
@@ -54,10 +55,6 @@ export default function SongFormDial() {
 
   const handleOpen = () => {
     setOpen(true);
-  };
-
-  const handleAction = (time:any) => {
-    handleClose()
   };
 
   return (
@@ -77,7 +74,7 @@ export default function SongFormDial() {
               key={action.name}
               icon={action.icon}
               tooltipTitle={action.name}
-              onClick={ ()=> handleAction(action.value) }
+              onClick={() => eventHandler(action.value)}
             />
           ))}
         </SpeedDial>
@@ -85,3 +82,5 @@ export default function SongFormDial() {
     </div>
   );
 }
+
+export default SongFormDial;

@@ -3,7 +3,8 @@ import {SongModel, SongBarModel} from '../../data/Models';
 import SongBar from './SongBar';
 
 export interface GridProps {
-    song: SongModel
+    song: SongModel,
+    numeralChangeHandler: any
 }
 
 /** Styling properties applied to the board element */
@@ -13,24 +14,25 @@ const boardStyle: React.CSSProperties = {
   display: 'flex',
   flexWrap: 'wrap',
 }
-/** Styling properties applied to each square element */
-const squareStyle: React.CSSProperties = { width: '12.5%', height: '12.5%' }
 
 /**
  * The chessboard component
  * @param props The react props
  */
 const SongGrid: React.FC<GridProps> = ({
-    song: songModel
+    song: songModel,
+    numeralChangeHandler : numeralHandler
 }) => {
-    
-    function renderBar(songBar: SongBarModel) {
-        return <SongBar bar={songBar}/>
+
+    const [songState, setSong] = React.useState<SongModel>(songModel)
+    React.useEffect(() => { setSong(songModel) }, [songModel]);    
+    function renderBar(songBar: SongBarModel, barIndex: number) {
+        return <SongBar config={songModel.config} bar={songBar} barIndex={barIndex} numeralHandler={numeralHandler}/>
     }
 
     const rows = []
-    for (let i = 0; i < songModel.bars.length; i += 1) {
-       rows.push(renderBar(songModel.bars[i]))
+    for (let i = 0; i < songState.bars.length; i += 1) {
+       rows.push(renderBar(songState.bars[i], i))
     }
     return <div style={boardStyle}>{rows}</div>
   

@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import './App.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
@@ -10,10 +9,11 @@ import Footer from './components/template/footer';
 import NotFound from './components/template/notfound';
 import SongList from './components/songs/SongList';
 import SongForm from './components/songs/SongForm';
+import ViewSong from './components/songs/ViewSong';
 import Home from './components/pages/Home';
+import CreateSong from './components/songs/CreateSong';
 
 const App: React.FC = () => {
-
 
   return (
     <Router>
@@ -30,7 +30,8 @@ const App: React.FC = () => {
                 <Switch>
                   <Route exact path="/" component={Home} />
                   <Route path="/songs" component={SongList} />
-                  <Route path="/new" component={SongForm} />
+                  <Route path="/new/:template" component={CreateSong} />
+                  <Route path="/song/:id" component={ViewSong} />
                   <Route component={NotFound} />
                 </Switch>
             </Grid>

@@ -1,12 +1,23 @@
 export type SongModel = {
     title: string;
     bars : SongBarModel[];
+    config : SongConfig;
+
 };
 
 export type SongBarModel = {
     lyrics: string;
-    numerals: Numeral[]
+    beats: BeatModel[];
 };
+
+export type SongConfig = {
+    bpm: number;
+    key: number;
+};
+
+export type BeatModel = {
+    numeral : Numeral|undefined
+}
 
 export interface Numeral {
     getValue():string,
