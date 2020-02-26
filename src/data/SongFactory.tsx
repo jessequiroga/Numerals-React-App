@@ -1,5 +1,5 @@
-import {SongConfig, SongBarModel, BeatModel, SongModel} from './Models';
-import { TEST_SONG } from './Fixtures';
+import {SongConfig, SongBarModel, BeatModel, SongModel, I, II, III, IV, V, Numeral} from './Models';
+import { SONG_TYPES } from './Constants';
 
 export class SongFactory {
     public config: SongConfig
@@ -19,21 +19,37 @@ export class SongFactory {
         }
         return TMP_BAR     
     }
-    static makeSong() : SongModel {
+    makeSong(type? : string) : SongModel {
         
-        const CONFIG : SongConfig = {
-            bpm : 4,
-            key: 1
-        }
-        
-        const SONG: SongModel = {
+        var song: SongModel = {
             title: 'Give me a title',
             bars : [
                 
             ],
-            config : CONFIG
+            config : this.config
         };
 
-        return SONG;     
+        if (type) {
+            var foundType = SONG_TYPES.find( (songType) => {
+                return songType.label === type
+            })
+            if(foundType) {
+                song.bars = foundType.getBars(this)
+            }
+        }
+
+        return song;     
+    }
+
+    makeNumeral(numeral : number):Numeral|undefined {
+        
+        return [
+            undefined,
+            new I(),
+            new II(),
+            new III(),
+            new IV(),
+            new V()
+        ][Math.ceil(numeral)]
     }
 }

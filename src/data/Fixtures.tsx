@@ -5,23 +5,23 @@ export const TEST_BAR_BEAT_EMPTY: m.BeatModel = {
 }
 
 export const TEST_BAR_BEAT_I: m.BeatModel = {
-    numeral : new m.I
+    numeral : new m.I()
 }
 
 export const TEST_BAR_BEAT_II: m.BeatModel = {
-    numeral : new m.II
+    numeral : new m.II()
 }
 
 export const TEST_BAR_BEAT_III: m.BeatModel = {
-    numeral : new m.III
+    numeral : new m.III()
 }
 
 export const TEST_BAR_BEAT_IV: m.BeatModel = {
-    numeral : new m.IV
+    numeral : new m.IV()
 }
 
 export const TEST_BAR_BEAT_V: m.BeatModel = {
-    numeral : new m.V
+    numeral : new m.V()
 }
 
 export const TEST_BAR_1: m.SongBarModel = {

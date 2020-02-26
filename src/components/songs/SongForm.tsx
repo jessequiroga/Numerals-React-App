@@ -11,47 +11,44 @@ import Backend from 'react-dnd-html5-backend'
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import ShareIcon from '@material-ui/icons/Share';
-import {SongModel, Numeral, SongConfig} from '../../data/Models';
-import {SongFactory} from '../../data/SongFactory';
-import {SongRepository} from '../../data/SongRepository';
-import { useParams } from 'react-router-dom';
-
+import { SongModel, Numeral, SongConfig } from '../../data/Models';
+import { SongFactory } from '../../data/SongFactory';
 
 export interface SongProps {
   song: SongModel
 }
 
 const SongForm: React.FC<SongProps> = ({
-    song: songModel,
-}) => { 
-  console.log(songModel)
+  song: songModel,
+}) => {
+
   const [song, setSong] = React.useState<SongModel>(songModel)
   const songFactory = new SongFactory(song.config)
 
   const handleBarAdd = (barNum: number) => {
-    for(var i=0;i<barNum; i++) {
+    for (var i = 0; i < barNum; i++) {
       song.bars.push(songFactory.makeBar())
     }
-    setSong({...song})
+    setSong({ ...song })
   };
 
-  const handleNumeralChange = (numeral: Numeral, barIndex:number, beatIndex: number) => {
+  const handleNumeralChange = (numeral: Numeral, barIndex: number, beatIndex: number) => {
     song.bars[barIndex].beats[beatIndex].numeral = numeral
-    setSong({...song})
+    setSong({ ...song })
   };
 
   const handleConfigChange = (config: SongConfig) => {
     song.config = config;
-    setSong({...song})
+    setSong({ ...song })
   };
 
   return (
-    
+
     <Container maxWidth="sm">
       <DndProvider backend={Backend}>
         <Paper>
           <Container maxWidth="sm">
-            <Toolbar> 
+            <Toolbar>
               <Typography variant="h5">
                 {song.title}
               </Typography>
@@ -74,7 +71,7 @@ const SongForm: React.FC<SongProps> = ({
       <Toolbar>
         <SongFormDial eventHandler={handleBarAdd} />
       </Toolbar>
-     </Container>
+    </Container>
   );
 }
 

@@ -3,6 +3,7 @@ import Container from '@material-ui/core/Container';
 import { Typography, Grid, Button, Card, CardMedia, CardContent, CardActions } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { SONG_TYPES } from '../../data/Constants';
+import { NavLink } from 'react-router-dom';
 
 const cards = SONG_TYPES; 
 const useStyles = makeStyles(theme => ({
@@ -86,12 +87,11 @@ const Home: React.FC = (props) => {
                </Typography>
              </CardContent>
              <CardActions>
-               <Button size="small" color="primary">
-                 View
+              <NavLink activeClassName="active" to={"/new/" + card.label}>
+                <Button variant="contained" size="small" color="primary">
+                 Get started
                </Button>
-               <Button size="small" color="primary">
-                 Edit
-               </Button>
+              </NavLink>
              </CardActions>
            </Card>
          </Grid>

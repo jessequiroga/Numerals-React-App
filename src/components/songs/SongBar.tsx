@@ -12,15 +12,15 @@ export interface BarProps {
 }
 
 const SongBar: React.FC<BarProps> = ({
-  bar: bar,
-  numeralHandler : numeralHandler,
-  barIndex : barIndex,
-  config : config
+  bar,
+  numeralHandler,
+  barIndex,
+  config
 }) => {
 
   function renderBarColumn(beat: BeatModel, barIndex: number, beatIndex: number) {
-    return <Grid item xs={3} >
-              <BarNumeralSelect config={config} numeralHandler={numeralHandler} numeral={(beat.numeral) ? beat.numeral: undefined} barIndex={barIndex} beatIndex={beatIndex} />
+    return <Grid key={"griditem-" + barIndex + "-" + beatIndex} item xs={3} >
+              <BarNumeralSelect key={"select-" + barIndex + "-" + beatIndex} config={config} numeralHandler={numeralHandler} numeral={(beat.numeral) ? beat.numeral: undefined} barIndex={barIndex} beatIndex={beatIndex} />
            </Grid>
   }
 
@@ -31,12 +31,12 @@ const SongBar: React.FC<BarProps> = ({
 
   return (
     <Grid container spacing={0}>
-      <Grid container xs={12} spacing={0}>
+      <Grid container spacing={0}>
          {rows}
       </Grid>
-      <Grid container xs={12} spacing={0}>
+      <Grid container spacing={0}>
           <TextField 
-            id="filled-basic" 
+            key={"numeral-bar-id-" + barIndex}
             fullWidth
             defaultValue={bar.lyrics ? bar.lyrics : ''}
           />

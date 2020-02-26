@@ -26,7 +26,5 @@ export const BPM = [
 ]
 
 export const SONG_TYPES = [
-    { label: '3 Chord', key : 0, description : 'Poppy or sad; Simple 3 chord progression can do it all'},
-    { label: '12 Bar Blues', key : 1, description : 'You wanna jam? You need to shred!?' },
-    { label: 'Random', key : 1, description : 'Dealers choice brah' },
+    new m.ThreeChord(),
 ]

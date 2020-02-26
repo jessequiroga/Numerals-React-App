@@ -44,7 +44,7 @@ export interface SongDialProps {
 }
 
 const SongFormDial : React.FC<SongDialProps> = ({
-  eventHandler: eventHandler
+  eventHandler
 }) => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);

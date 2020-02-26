@@ -23,8 +23,8 @@ interface SongConfigProps {
 }
 
 const SongConfigForm:  React.FC<SongConfigProps> = ({
-  songConfig: songConfig,
-  songConfigHandler: configHandler
+  songConfig,
+  songConfigHandler
 }) => { 
     const classes = useStyles();
     const [songKey, setKey] = React.useState(1);
@@ -44,13 +44,13 @@ const SongConfigForm:  React.FC<SongConfigProps> = ({
     const handleKeyChange = (event:any) => {
       setKey(event.target.value);
       songConfig.key = event.target.value
-      configHandler(songConfig);
+      songConfigHandler(songConfig);
     };
 
     const handleBpmChange = (event:any) => {
       setBpm(event.target.value);
       songConfig.bpm = event.target.value
-      configHandler(songConfig);
+      songConfigHandler(songConfig);
     };
   
     return (
@@ -74,7 +74,8 @@ const SongConfigForm:  React.FC<SongConfigProps> = ({
         >
           <FormControl variant="outlined" className={classes.formControl}>
             <TextField
-                  id="standard-select-currency"
+                  key="song-config-key"
+                  id="song-config-key"
                   select
                   label="Key"
                   value={songKey}
@@ -82,7 +83,7 @@ const SongConfigForm:  React.FC<SongConfigProps> = ({
               >
                 {SCALE.map((value, i) => { 
                   return (
-                    <MenuItem value={value.key}>{value.label}</MenuItem>
+                    <MenuItem key={value.key} value={value.key}>{value.label}</MenuItem>
                   ) 
                 })}
               </TextField>
@@ -96,7 +97,7 @@ const SongConfigForm:  React.FC<SongConfigProps> = ({
               >
                 {BPM.map((value, i) => { 
                   return (
-                    <MenuItem value={value.key}>{value.label}</MenuItem>
+                    <MenuItem key={value.key} value={value.key}>{value.label}</MenuItem>
                   ) 
                 })}
               </TextField>

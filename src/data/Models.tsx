@@ -1,3 +1,5 @@
+import { SongFactory } from "./SongFactory";
+
 export type SongModel = {
     title: string;
     bars : SongBarModel[];
@@ -66,5 +68,43 @@ export class V implements Numeral {
     }
     getIndex():number{
         return 5;
+    }
+}
+
+export interface SongType {
+    key: number,
+    label: string,
+    description : string,
+    getBars(factory:SongFactory):SongBarModel[]
+}
+
+export class ThreeChord implements SongType {
+
+    key = 0
+    label = '3 Chord'
+    description = 'Poppy or sad; Simple 3 chord progression can do it all'
+    getBars(factory:SongFactory):SongBarModel[]{
+   
+        const CHORD_1 = factory.makeNumeral(1)
+        const CHORD_2 = factory.makeNumeral(Math.floor(Math.random() * 5))
+        const CHORD_3 = factory.makeNumeral(Math.floor(Math.random() * 5))
+        
+        
+        const VERSE = factory.makeBar()        
+        VERSE.beats[0].numeral = CHORD_1
+        VERSE.beats[1].numeral = CHORD_2
+        VERSE.beats[2].numeral = CHORD_3
+        VERSE.beats[3].numeral = CHORD_1
+
+        const CHORUS = factory.makeBar()
+        CHORUS.beats[0].numeral = CHORD_3
+        CHORUS.beats[1].numeral = CHORD_1
+        CHORUS.beats[2].numeral = CHORD_2
+        CHORUS.beats[3].numeral = CHORD_1
+
+        return [
+            VERSE,CHORUS, VERSE, CHORUS
+        ]        
+        
     }
 }

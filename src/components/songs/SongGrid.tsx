@@ -27,7 +27,7 @@ const SongGrid: React.FC<GridProps> = ({
     const [songState, setSong] = React.useState<SongModel>(songModel)
     React.useEffect(() => { setSong(songModel) }, [songModel]);    
     function renderBar(songBar: SongBarModel, barIndex: number) {
-        return <SongBar config={songModel.config} bar={songBar} barIndex={barIndex} numeralHandler={numeralHandler}/>
+        return <SongBar key={"song-bar-" + barIndex} config={songModel.config} bar={songBar} barIndex={barIndex} numeralHandler={numeralHandler}/>
     }
 
     const rows = []

@@ -68,16 +68,16 @@ interface BarNumeralSelectProps {
 }
 
 const BarNumeralSelect : React.FC<BarNumeralSelectProps> = ({
-    numeral: numeral,
-    beatIndex: beatIndex,
-    barIndex: barIndex,
-    numeralHandler: numeralHandler,
-    config: config
+    numeral,
+    beatIndex,
+    barIndex,
+    numeralHandler,
+    config
   }) => {
   
-    const classes = useStyles();
+  const classes = useStyles();
   //console.log(numeral);
-  const [numeralData, setNumeralData] = React.useState<NumeralProps[]>(NUMERALS);
+  const numeralData = NUMERALS;
   const [selectedNumeral, setNumeral] = React.useState((numeral)? numeral.getIndex() : '');
   const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
     setNumeral(event.target.value as string);
