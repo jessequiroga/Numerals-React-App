@@ -10,6 +10,7 @@ import { DndProvider } from 'react-dnd'
 import Backend from 'react-dnd-html5-backend'
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
+import SaveIcon from '@material-ui/icons/Save';
 import ShareIcon from '@material-ui/icons/Share';
 import { SongModel } from '../../data/Models';
 import { SongHandler } from '../../utils/Handlers';
@@ -29,6 +30,19 @@ const SongForm: React.FC<SongProps> = ({
     setSong({ ...song })
   };
 
+  const handleClickSave = () =>  {
+    var songs = localStorage.getItem('songs');
+    var songString = songs ? songs : '[]';
+    var parsedSongs = JSON.parse(songString)
+    parsedSongs.push(song)
+    localStorage.setItem('songs', JSON.stringify(parsedSongs));
+  }
+
+  React.useEffect(() => {
+    localStorage.setItem('song', JSON.stringify(song));
+  }, [song]);
+
+
   return (
 
     <Container maxWidth="sm">
@@ -39,6 +53,9 @@ const SongForm: React.FC<SongProps> = ({
               <Typography variant="h5">
                 {song.title}
               </Typography>
+              <IconButton edge="start" color="inherit" aria-label="menu">
+                <SaveIcon onClick={handleClickSave} />
+              </IconButton>
               <Divider orientation="vertical" />
 
               <SongConfigForm songConfigHandler={handleSongChange} songConfig={song.config} />
