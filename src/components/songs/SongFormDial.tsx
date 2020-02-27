@@ -6,6 +6,7 @@ import SpeedDialAction from '@material-ui/lab/SpeedDialAction';
 import FourBarIcon from '@material-ui/icons/Filter4';
 import TwoBarIcon from '@material-ui/icons/Filter2';
 import OneBarIcon from '@material-ui/icons/Filter1';
+import { BarAddHandler } from '../../utils/Handlers';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -57,6 +58,13 @@ const SongFormDial : React.FC<SongDialProps> = ({
     setOpen(true);
   };
 
+  const handleClick = (barNum:number) => {
+    console.log(barNum)
+    var handler = new BarAddHandler();
+    handler.barNum = barNum;
+    eventHandler(handler)
+  };
+
   return (
     <div className={classes.root}>
       <div className={classes.exampleWrapper}>
@@ -74,7 +82,7 @@ const SongFormDial : React.FC<SongDialProps> = ({
               key={action.name}
               icon={action.icon}
               tooltipTitle={action.name}
-              onClick={() => eventHandler(action.value)}
+              onClick={()=>{handleClick(action.value)}}
             />
           ))}
         </SpeedDial>

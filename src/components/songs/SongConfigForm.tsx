@@ -6,6 +6,7 @@ import FormControl from '@material-ui/core/FormControl';
 import TextField from '@material-ui/core/TextField';
 import { Popover, Button } from '@material-ui/core';
 import { SongConfig } from '../../data/Models';
+import { ConfigHandler } from '../../utils/Handlers';
 
 const useStyles = makeStyles(theme => ({
   formControl: {
@@ -44,13 +45,17 @@ const SongConfigForm:  React.FC<SongConfigProps> = ({
     const handleKeyChange = (event:any) => {
       setKey(event.target.value);
       songConfig.key = event.target.value
-      songConfigHandler(songConfig);
+      var handler = new ConfigHandler();
+      handler.config = songConfig;
+      songConfigHandler(handler);
     };
 
     const handleBpmChange = (event:any) => {
       setBpm(event.target.value);
       songConfig.bpm = event.target.value
-      songConfigHandler(songConfig);
+      var handler = new ConfigHandler();
+      handler.config = songConfig;
+      songConfigHandler(handler);
     };
   
     return (

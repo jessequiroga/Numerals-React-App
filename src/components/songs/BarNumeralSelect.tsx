@@ -6,6 +6,7 @@ import Select from '@material-ui/core/Select';
 import InputBase from '@material-ui/core/InputBase';
 import {NUMERALS, SCALE} from '../../data/Constants';
 import { Numeral, SongConfig } from '../../data/Models';
+import { NumeralHandler } from '../../utils/Handlers';
 
 
 const BootstrapInput = withStyles((theme: Theme) =>
@@ -81,7 +82,12 @@ const BarNumeralSelect : React.FC<BarNumeralSelectProps> = ({
   const [selectedNumeral, setNumeral] = React.useState((numeral)? numeral.getIndex() : '');
   const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
     setNumeral(event.target.value as string);
-    numeralHandler(NUMERALS[event.target.value as number].value, barIndex, beatIndex)
+
+    var handler = new NumeralHandler();
+    handler.barIndex = barIndex;
+    handler.beatIndex = beatIndex;
+    handler.numeral = NUMERALS[event.target.value as number].value;
+    numeralHandler(handler)
   };
 
   const renderNumeral = (numeral: Numeral|undefined, key: number) => {

@@ -11,8 +11,8 @@ import Backend from 'react-dnd-html5-backend'
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import ShareIcon from '@material-ui/icons/Share';
-import { SongModel, Numeral, SongConfig } from '../../data/Models';
-import { SongFactory } from '../../data/SongFactory';
+import { SongModel } from '../../data/Models';
+import { SongHandler } from '../../utils/Handlers';
 
 export interface SongProps {
   song: SongModel
@@ -23,22 +23,9 @@ const SongForm: React.FC<SongProps> = ({
 }) => {
 
   const [song, setSong] = React.useState<SongModel>(songModel)
-  const songFactory = new SongFactory(song.config)
-
-  const handleBarAdd = (barNum: number) => {
-    for (var i = 0; i < barNum; i++) {
-      song.bars.push(songFactory.makeBar())
-    }
-    setSong({ ...song })
-  };
-
-  const handleNumeralChange = (numeral: Numeral, barIndex: number, beatIndex: number) => {
-    song.bars[barIndex].beats[beatIndex].numeral = numeral
-    setSong({ ...song })
-  };
-
-  const handleConfigChange = (config: SongConfig) => {
-    song.config = config;
+ 
+  const handleSongChange = (handler:SongHandler) => {
+    handler.handle(song)
     setSong({ ...song })
   };
 
@@ -54,7 +41,7 @@ const SongForm: React.FC<SongProps> = ({
               </Typography>
               <Divider orientation="vertical" />
 
-              <SongConfigForm songConfigHandler={handleConfigChange} songConfig={song.config} />
+              <SongConfigForm songConfigHandler={handleSongChange} songConfig={song.config} />
 
               <Divider orientation="vertical" />
 
@@ -63,13 +50,13 @@ const SongForm: React.FC<SongProps> = ({
               </IconButton>
             </Toolbar>
 
-            <SongGrid song={song} numeralChangeHandler={handleNumeralChange} />
+            <SongGrid song={song} songChangeHandler={handleSongChange} />
 
           </Container>
         </Paper>
       </DndProvider>
       <Toolbar>
-        <SongFormDial eventHandler={handleBarAdd} />
+        <SongFormDial eventHandler={handleSongChange} />
       </Toolbar>
     </Container>
   );

@@ -42,7 +42,6 @@ export class SongFactory {
     }
 
     makeNumeral(numeral : number):Numeral|undefined {
-        
         return [
             undefined,
             new I(),

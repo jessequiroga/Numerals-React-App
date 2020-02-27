@@ -4,7 +4,7 @@ import SongBar from './SongBar';
 
 export interface GridProps {
     song: SongModel,
-    numeralChangeHandler: any
+    songChangeHandler: any
 }
 
 /** Styling properties applied to the board element */
@@ -21,13 +21,13 @@ const boardStyle: React.CSSProperties = {
  */
 const SongGrid: React.FC<GridProps> = ({
     song: songModel,
-    numeralChangeHandler : numeralHandler
+    songChangeHandler : numeralHandler
 }) => {
 
     const [songState, setSong] = React.useState<SongModel>(songModel)
     React.useEffect(() => { setSong(songModel) }, [songModel]);    
     function renderBar(songBar: SongBarModel, barIndex: number) {
-        return <SongBar key={"song-bar-" + barIndex} config={songModel.config} bar={songBar} barIndex={barIndex} numeralHandler={numeralHandler}/>
+        return <SongBar key={"song-bar-" + barIndex} config={songModel.config} bar={songBar} barIndex={barIndex} songHandler={numeralHandler}/>
     }
 
     const rows = []
