@@ -16,12 +16,15 @@ const SongTitle: React.FC<TitleEditProps> = ({
 
     const [clickedTitle, setClickedTitle] = React.useState(false)
     const [tmpTitle, setTmpTitle] = React.useState('')
+    
     const validateText = (text:string) => {
         return (text.length > 0 && text.length < 64);
     }
 
     const handleChange = (data:any) => {
-        setTmpTitle(data.target.value)
+        if(validateText(data.target.value)) {
+            setTmpTitle(data.target.value)
+        }
     }; 
 
     const handleSaveClick = () => {
@@ -38,7 +41,7 @@ const SongTitle: React.FC<TitleEditProps> = ({
   return (
     <div>
         { ! clickedTitle ?
-        
+
             <Typography variant="h4" onClick={() => {handleClick()}}>
                 {title}
             </Typography>

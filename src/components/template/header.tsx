@@ -12,7 +12,6 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import Divider from '@material-ui/core/Divider';
 import Drawer from '@material-ui/core/Drawer';
 import ListItemText from '@material-ui/core/ListItemText';
-import MusicIcon from '@material-ui/icons/MusicNote';
 import HomeIcon from '@material-ui/icons/Home';
 import QueueMusic from '@material-ui/icons/QueueMusic';
 import AddIcon from '@material-ui/icons/Add';

@@ -61,7 +61,7 @@ export class BarMoveHandler implements SongHandler {
         var totalBars = song.bars.length
         
         // Zero is the top, so up is down here
-        if (this.up && tmpIndex != 0) {
+        if (this.up && tmpIndex !== 0) {
             tmpIndex = this.allTheWay ? 0 : tmpIndex - 1
         } else if (tmpIndex < totalBars) {
             tmpIndex = this.allTheWay ? totalBars - 1 : tmpIndex + 1

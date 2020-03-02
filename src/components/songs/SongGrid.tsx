@@ -30,7 +30,7 @@ const SongGrid: React.FC<GridProps> = ({
         return <SongBar key={"song-bar-" + barIndex + songBar.uuid}  config={songModel.config} bar={songBar} barIndex={barIndex} songHandler={numeralHandler}/>
     }
     const rows = []
-    for (let i = 0; i < songModel.bars.length; i += 1) {
+    for (let i = 0; i < songState.bars.length; i += 1) {
        rows.push(renderBar(songModel.bars[i], i))
     }
     return <div style={boardStyle}>{rows}</div>

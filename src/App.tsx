@@ -15,9 +15,6 @@ import SongWriting101 from './components/pages/Songwriting101';
 import 'typeface-roboto';
 import {
   createMuiTheme,
-  makeStyles,
-  createStyles,
-  Theme as AugmentedTheme,
   ThemeProvider,
 } from '@material-ui/core/styles';
 

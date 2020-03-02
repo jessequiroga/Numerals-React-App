@@ -47,7 +47,7 @@ const SongWriting101: React.FC = (props) => {
          Songwriting 101
        </Typography>
        <Typography variant="body1" align="center" color="textPrimary" paragraph>
-            Numerals is primarily based off of the the <a href="https://en.wikipedia.org/wiki/Circle_of_fifths">Circle of Fifths</a> and the latent <a href="">chord progressions</a> they unlock. 
+            Numerals is primarily based off of the the <a href="https://en.wikipedia.org/wiki/Circle_of_fifths">Circle of Fifths</a> and the latent <a href="https://en.wikipedia.org/wiki/Circle_of_fifths">chord progressions</a> they unlock. 
        </Typography>
        <Typography variant="body1" align="center" color="textPrimary" paragraph>
           Realistically, there is no hard and fast rule for creating a song...it's an artisitc endeavor which is impossible to 'program', that said, 

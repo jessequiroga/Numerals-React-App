@@ -20,11 +20,8 @@ const SongBar: React.FC<BarProps> = ({
   barIndex,
   config
 }) => {
-  const [songBar, setSongBar] = React.useState(bar)
   const [clickedLyric, setClickedLyric] = React.useState(false)
   const [tmpLyric, setTmpLyric] = React.useState('')
-
-  React.useEffect(() => { setSongBar(bar) }, [bar]);    
 
   const handleSaveClick = (event:any) => {
     var handler = new BarLyricHandler()

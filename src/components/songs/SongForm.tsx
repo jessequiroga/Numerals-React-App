@@ -12,10 +12,8 @@ import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import SaveIcon from '@material-ui/icons/Save';
 import ShareIcon from '@material-ui/icons/Share';
-import EditIcon from '@material-ui/icons/Edit';
 import { SongModel } from '../../data/Models';
 import { SongHandler } from '../../utils/Handlers';
-import Fab from '@material-ui/core/Fab';
 import Button from '@material-ui/core/Button';
 
 export interface SongProps {
@@ -55,8 +53,8 @@ const SongForm: React.FC<SongProps> = ({
           <Container maxWidth="sm">
             <Toolbar>
               <SongTitle title={song.title} titleHandler={handleSongChange} />
-              <IconButton edge="start" color="inherit" aria-label="menu">
-                <SaveIcon onClick={handleClickSave} />
+              <IconButton onClick={handleClickSave} edge="start" color="inherit" aria-label="menu">
+                <SaveIcon />
               </IconButton>
               <Divider orientation="vertical" />
 
