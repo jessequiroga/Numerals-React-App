@@ -16,6 +16,7 @@ const SongList: React.FC = (props) => {
         {SONGS.map((song, i) => {        
           return (
             <ListItem button
+            key={song.uuid}
             component={NavLink} to={"/song/" + i}
             >
               <ListItemIcon>

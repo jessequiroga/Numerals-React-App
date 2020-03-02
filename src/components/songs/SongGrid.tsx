@@ -23,16 +23,15 @@ const SongGrid: React.FC<GridProps> = ({
     song: songModel,
     songChangeHandler : numeralHandler
 }) => {
-
+    
     const [songState, setSong] = React.useState<SongModel>(songModel)
     React.useEffect(() => { setSong(songModel) }, [songModel]);    
     function renderBar(songBar: SongBarModel, barIndex: number) {
-        return <SongBar key={"song-bar-" + barIndex} config={songModel.config} bar={songBar} barIndex={barIndex} songHandler={numeralHandler}/>
+        return <SongBar key={"song-bar-" + barIndex + songBar.uuid}  config={songModel.config} bar={songBar} barIndex={barIndex} songHandler={numeralHandler}/>
     }
-
     const rows = []
-    for (let i = 0; i < songState.bars.length; i += 1) {
-       rows.push(renderBar(songState.bars[i], i))
+    for (let i = 0; i < songModel.bars.length; i += 1) {
+       rows.push(renderBar(songModel.bars[i], i))
     }
     return <div style={boardStyle}>{rows}</div>
   

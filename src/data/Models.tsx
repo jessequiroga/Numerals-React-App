@@ -1,6 +1,7 @@
 import { SongFactory } from "./SongFactory";
 
 export type SongModel = {
+    uuid : string;
     title: string;
     bars : SongBarModel[];
     config : SongConfig;
@@ -8,6 +9,7 @@ export type SongModel = {
 };
 
 export type SongBarModel = {
+    uuid : string;
     lyrics: string;
     beats: BeatModel[];
 };

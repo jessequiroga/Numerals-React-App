@@ -1,12 +1,13 @@
 import React from 'react';
 import { createStyles, makeStyles, withStyles, Theme } from '@material-ui/core/styles';
 import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import InputBase from '@material-ui/core/InputBase';
 import {NUMERALS, SCALE} from '../../data/Constants';
 import { Numeral, SongConfig } from '../../data/Models';
 import { NumeralHandler } from '../../utils/Handlers';
+import FormControl from '@material-ui/core/FormControl';
+import InputLabel from '@material-ui/core/InputLabel';
 
 
 const BootstrapInput = withStyles((theme: Theme) =>
@@ -20,7 +21,7 @@ const BootstrapInput = withStyles((theme: Theme) =>
       borderRadius: 4,
       position: 'relative',
       backgroundColor: theme.palette.background.paper,
-      border: '1px solid #ced4da',
+      border: 'none',
       fontSize: 16,
       padding: '10px 26px 10px 12px',
       transition: theme.transitions.create(['border-color', 'box-shadow']),
@@ -92,15 +93,16 @@ const BarNumeralSelect : React.FC<BarNumeralSelectProps> = ({
 
   const renderNumeral = (numeral: Numeral|undefined, key: number) => {
     var tmpIndex = (numeral) ? numeral.getIndex() : false
+    console.log(tmpIndex)
     if(!tmpIndex){
-        return ('tt')
+        return ('')
     } 
     //Adjust for array offset
     tmpIndex = tmpIndex - 1;
 
     //Check for any transposition. 
     var keyOffset = key - 1;
-    var finalOffset = (tmpIndex + keyOffset) % SCALE.length
+    var finalOffset = ((tmpIndex + keyOffset)) % SCALE.length
     return (
         <div>
             {SCALE[finalOffset].label}
@@ -111,24 +113,22 @@ const BarNumeralSelect : React.FC<BarNumeralSelectProps> = ({
   return (
     <div>
       <FormControl className={classes.margin}>
+        <InputLabel id="demo-simple-select-helper-label">{renderNumeral(numeral, config.key)}</InputLabel>
         <Select
-          id="standard-basic"
           value={selectedNumeral}
           onChange={handleChange}
-          input={<BootstrapInput />}
-        >
+        >   
             <MenuItem key='no-thing-selected' value="">
                 <em>-</em>
             </MenuItem>
             {numeralData.map(
                 data => {
                     return (
-                        <MenuItem key={data.label} value={data.key}>{data.label} ({renderNumeral(data.value, config.key)})</MenuItem>
+                        <MenuItem key={data.label} value={data.key}>{data.label}</MenuItem>
                     );
                 })
             }  
         </Select>
-
       </FormControl>
     </div>
   );

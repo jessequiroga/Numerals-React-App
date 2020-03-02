@@ -15,7 +15,9 @@ import ListItemText from '@material-ui/core/ListItemText';
 import MusicIcon from '@material-ui/icons/MusicNote';
 import HomeIcon from '@material-ui/icons/Home';
 import QueueMusic from '@material-ui/icons/QueueMusic';
+import AddIcon from '@material-ui/icons/Add';
 import { NavLink } from "react-router-dom";
+import SongList from "../songs/SongList";
 
 
 const useStyles = makeStyles(theme => ({
@@ -79,18 +81,20 @@ function Header() {
               <ListItemIcon><QueueMusic /></ListItemIcon>
               <ListItemText primary="Songs" />
             </ListItem>
-        
+            
+
+            <ListItem 
+              button 
+              key="create-song"
+              color="secondary"
+              component={NavLink} to="/new/empty">
+              <ListItemIcon color="secondary"><AddIcon /></ListItemIcon>
+              <ListItemText primary="New Song" />
+            </ListItem>
         </List>
         <Divider />
-        <h3> Recent Songs </h3>
-        <List>
-          {['Gon with the wind', 'Another', 'SCH'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon><MusicIcon /></ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
+        <h3>Songs </h3>
+       <SongList />
       </div>
   );
 

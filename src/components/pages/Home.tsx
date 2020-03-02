@@ -54,14 +54,18 @@ const Home: React.FC = (props) => {
        <div className={classes.heroButtons}>
          <Grid container spacing={2} justify="center">
            <Grid item>
+           <NavLink activeClassName="active" to="/new/empty">
              <Button variant="contained" color="primary">
                Build Now
              </Button>
+             </NavLink>
            </Grid>
            <Grid item>
-             <Button variant="outlined" color="primary">
-               Secondary action
-             </Button>
+            <NavLink activeClassName="active" to={"/songwriting101"}>
+               <Button variant="outlined" color="primary">
+                  Songwriting 101
+               </Button>
+             </NavLink>
            </Grid>
          </Grid>
        </div>

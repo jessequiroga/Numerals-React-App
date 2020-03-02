@@ -76,6 +76,7 @@ const SongFormDial : React.FC<SongDialProps> = ({
           onOpen={handleOpen}
           open={open}
           direction="right"
+          color="primary"
         >
           {actions.map(action => (
             <SpeedDialAction

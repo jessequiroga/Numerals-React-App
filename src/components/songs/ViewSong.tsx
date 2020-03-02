@@ -11,7 +11,7 @@ const ViewSong: React.FC = (props) => {
   var tmpSong = TEST_SONG
   const [song, setSong] = React.useState<SongModel>(tmpSong)
 
-  if (id !== undefined) {
+  if (id !== undefined && song != tmpSong) {
     setSong(SongRepository.getSong(parseInt(id)))
   }
 

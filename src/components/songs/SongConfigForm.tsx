@@ -60,7 +60,7 @@ const SongConfigForm:  React.FC<SongConfigProps> = ({
   
     return (
       <div>
-        <Button aria-describedby={id} variant="contained" color="primary" onClick={handleClick}>
+        <Button aria-describedby={id} variant="contained" color="secondary" onClick={handleClick}>
           Config
         </Button>
         <Popover

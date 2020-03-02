@@ -25,11 +25,13 @@ export const TEST_BAR_BEAT_V: m.BeatModel = {
 }
 
 export const TEST_BAR_1: m.SongBarModel = {
+    uuid : '1fe35579-5ce7-46ec-89e0-7e7236700297',
     lyrics : 'Floral fish gravy',
     beats : [TEST_BAR_BEAT_I, TEST_BAR_BEAT_IV, TEST_BAR_BEAT_EMPTY, TEST_BAR_BEAT_EMPTY]
 }
 
 export const TEST_BAR_2: m.SongBarModel = {
+    uuid : '1fe35579-5ce7-46ec-89e0-7e7236700294',
     lyrics : 'Oh how it feels to shit in a bell',
     beats : [TEST_BAR_BEAT_EMPTY, TEST_BAR_BEAT_IV, TEST_BAR_BEAT_EMPTY, TEST_BAR_BEAT_II]
 }
@@ -40,6 +42,7 @@ export const TEST_CONFIG: m.SongConfig = {
 }
 
 export const TEST_SONG: m.SongModel = {
+    uuid : '1fe35579-5ce7-46ec-89e0-7e7236704294',
     title: 'Shitting in a Bell',
     bars : [
         TEST_BAR_1,
@@ -51,6 +54,7 @@ export const TEST_SONG: m.SongModel = {
 
 
 export const TEST_SONG_2: m.SongModel = {
+    uuid : '1fe35539-5ce7-46ec-89e0-7e7236700294',
     title: 'Love is a battlefield',
     bars : [
         TEST_BAR_1,
@@ -61,6 +65,7 @@ export const TEST_SONG_2: m.SongModel = {
 };
 
 export const TEST_SONG_3: m.SongModel = {
+    uuid : '1fe35539-5ce7-46ec-89e0-7e7236720294',
     title: 'Home on the range',
     bars : [
         TEST_BAR_1,
