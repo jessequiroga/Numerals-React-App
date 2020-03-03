@@ -1,10 +1,7 @@
 # Using the node alpine image to build the React app
 image: node:alpine
 
-# Announce the URL as per CRA docs
-# https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md#advanced-configuration
-variables:
-  PUBLIC_URL: /numerals
+
 # Cache node modules - speeds up future builds
 cache:
   paths:
